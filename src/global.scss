@@ -24,3 +24,16 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.configuration {
+    --width: 90%;
+    --backdrop-opacity: 1;
+}
+
+.error {
+    --backdrop-opacity: 1;
+}
+
+.settings {
+    --backdrop-opacity: 0.5;
+}

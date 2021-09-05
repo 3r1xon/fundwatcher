@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "Test",
+	"appId": "com.fund.watcher",
+	"appName": "FundWatcher",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

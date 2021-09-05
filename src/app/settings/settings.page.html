@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title size="large" style="color: #ff0000;">Impostazioni</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-item>
+        <ion-label position="stacked">Nome</ion-label>
+        <ion-input clear-input [(ngModel)]="tmpSettings.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="stacked">Stipendio €</ion-label>
+        <ion-input type="number" clear-input [(ngModel)]="tmpSettings.salary"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="stacked">Giorno dello stipendio (da 1 a 31)</ion-label>
+        <ion-input type="number" min="1" max="31" clear-input [(ngModel)]="tmpSettings.payday"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="stacked">Limite uscite mensili €</ion-label>
+        <ion-input type="number" clear-input [(ngModel)]="tmpSettings.maxOutGo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Dark mode</ion-label>
+        <ion-toggle (ionChange)="toggleDarkMode()" 
+        [checked]="_utils.darkMode"></ion-toggle>
+    </ion-item>
+
+    <ion-button color="success" expand="full" (click)="save()">
+        Salva 
+        <ion-icon name="save-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button color="warning" expand="full" (click)="undo()">
+        Ripristina
+        <ion-icon name="arrow-undo-circle-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button color="warning" expand="full" (click)="exportData()">
+        Esporta dati
+        <ion-icon name="download-outline"></ion-icon>
+    </ion-button>
+
+</ion-content>

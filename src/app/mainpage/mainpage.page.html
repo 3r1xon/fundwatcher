@@ -1,0 +1,48 @@
+<ion-header [translucent]="true" *ngIf="_utils.appJson">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title size="large"><span style="color: #ff0000;">
+      {{ _utils.appJson.years[_utils.Y_Index].months[_utils.M_Index].month }}</span>, 
+      {{ _utils.appJson.years[_utils.Y_Index].year }}
+    </ion-title>
+    <ion-title size="small">{{_utils.calculateSpendable()}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed" bottom left>
+    <ion-fab-button (click)="showDatePicker()">
+      <ion-icon name="calendar-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list *ngIf="_utils.appJson">
+
+    <div *ngFor="let movement of _utils.appJson.years[_utils.Y_Index].months[_utils.M_Index].movements; let i = index">
+
+      <ion-item [color]="movement.type == 'uscita' ? 'danger' : 'success' " ion-no-padding
+       (click)="showItem(i)">
+
+        <ion-icon [name]="movement.type == 'entrata' ? 'trending-up-outline' : 'trending-down-outline' "></ion-icon>
+        
+        <ion-label style="margin-left: 10px;">
+          <b> {{ movement.amount }}€ </b> {{ movement.reason }}
+        </ion-label>
+
+        <ion-title size="small">{{ movement.date }}</ion-title>
+        
+        <ion-icon name="trash-outline" (click)="deleteRow(i); $event.stopPropagation();"></ion-icon>
+      </ion-item>
+
+    </div>
+    
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="configureRow()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
