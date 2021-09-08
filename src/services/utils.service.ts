@@ -78,7 +78,7 @@ export class UtilsService {
 
   async showAlert(title: string, message: string, callback) {
     const alert = await this.alertController.create({
-      cssClass: "error",
+      cssClass: "alert",
       header: title,
       message: message,
       buttons: ['OK']
@@ -116,6 +116,29 @@ export class UtilsService {
 
 
     return `Puoi spendere ${spendable.toFixed(2)}€`;
+
+  }
+
+  calculateSummary() {
+
+    let totalOutGo = 0;
+
+    let totalEarn = 0;
+
+    this.appJson.years[this.Y_Index].months[this.M_Index].movements.forEach((movement) => {
+      if (movement.type == "uscita") {
+        totalOutGo += movement.amount;
+      }
+      if (movement.type == "entrata") {
+        totalEarn += movement.amount;
+      }
+    })
+
+    if (totalOutGo == 0 && totalEarn == 0) {
+      return "Non ci sono entrate e neanche uscite.";
+    }
+
+    return `TOTALE ENTRATE: ${totalEarn}€ \n TOTALE USCITE: ${totalOutGo}€ \n DIFFERENZA: ${totalEarn-totalOutGo}€`;
 
   }
 

@@ -13,7 +13,6 @@ export class SettingsPage implements OnInit {
   constructor(
     public _utils: UtilsService,
     private storage: Storage) {}
-    //private socialSharing: SocialSharing) { }
 
   public tmpSettings: appJson = { ...this._utils.appJson };
 

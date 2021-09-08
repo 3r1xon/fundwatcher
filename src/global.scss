@@ -30,8 +30,9 @@
     --backdrop-opacity: 1;
 }
 
-.error {
-    --backdrop-opacity: 1;
+.alert {
+    --backdrop-opacity: 0.5;
+    --width: 100%;
 }
 
 .settings {

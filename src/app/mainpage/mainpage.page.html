@@ -9,6 +9,13 @@
     </ion-title>
     <ion-title size="small">{{_utils.calculateSpendable()}}</ion-title>
   </ion-toolbar>
+
+  <ion-fab [hidden]="false" vertical="top" horizontal="end" top right style="margin: -5px;">
+    <ion-fab-button color="warning" size="small" (click)="openSummary()">
+      <ion-icon name="pie-chart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-header>
 
 <ion-content>  
@@ -39,6 +46,23 @@
     </div>
     
   </ion-list>
+
+
+  <!-- <ion-list>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Card Title</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Keep close to Nature's heart... and break clear away, once in awhile,
+        and climb a mountain or spend a week in the woods. Wash your spirit clean.
+      </ion-card-content>
+    </ion-card>
+    
+    
+  </ion-list> -->
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="configureRow()">

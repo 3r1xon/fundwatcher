@@ -285,5 +285,12 @@ export class MainPage implements OnInit {
 
   }
 
+  openSummary() {
+
+    const selectedMonth = this._utils.appJson.years[this._utils.Y_Index].months[this._utils.M_Index].month; 
+
+    this._utils.showAlert(`Riepilogo di ${selectedMonth}`, this._utils.calculateSummary(), () => {});
+  }
+
 
 }
