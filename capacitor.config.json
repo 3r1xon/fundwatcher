@@ -1,6 +1,6 @@
 {
 	"appId": "com.fund.watcher",
-	"appName": "FundWatcher",
+	"appName": "fundwatcher",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

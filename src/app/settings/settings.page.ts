@@ -23,7 +23,7 @@ export class SettingsPage implements OnInit {
     this._utils.appJson = { ...this.tmpSettings };
     this._utils.save();
 
-    this._utils.showAlert(`Attenzione, ${this._utils.appJson.name}`, "Il salvataggio è stato effettuato con successo.", () => {});
+    this._utils.showAlert(`Attenzione, ${this._utils.appJson.name}`, "Il salvataggio è stato effettuato con successo.");
   }
 
   undo() {
@@ -31,34 +31,43 @@ export class SettingsPage implements OnInit {
   }
 
   exportData() {
-    this._utils.showAlert(`Non disponbile.`, "Questa funzione è ancora in fase di programmazione.", () => { });
+    
+//     let text = 
+//     `
+// Nome: ${this._utils.appJson.name}, \n
+// Stipendio: ${this._utils.appJson.salary}€, \n
+// Giorno dello stipendio: ${this._utils.appJson.payday}, \n
+// Limite uscite mensili: ${this._utils.appJson.maxOutGo}€ \n`;
 
-    let text = 
-    `
-Nome: ${this._utils.appJson.name}, \n
-Stipendio: ${this._utils.appJson.salary}€, \n
-Giorno dello stipendio: ${this._utils.appJson.payday}, \n
-Limite uscite mensili: ${this._utils.appJson.maxOutGo}€ \n`;
+//     this._utils.appJson.years.forEach((year, y_index) => {
+//       text += `\n[Anno: ${year.year}] \n`;
+//       this._utils.appJson.years[y_index].months.forEach((month, m_index) => {
+//         text += `Mese: ${month.month} \n`;
+//         this._utils.appJson.years[y_index].months[m_index].movements.forEach((movement) => {
+//           text += `    ${movement.amount}€ | ${movement.type} | ${movement.date} | ${movement.reason} \n`;
+//         });
+//       });
+//     });
 
-    this._utils.appJson.years.forEach((year, y_index) => {
-      text += `\n[Anno: ${year.year}] \n`;
-      this._utils.appJson.years[y_index].months.forEach((month, m_index) => {
-        text += `Mese: ${month.month} \n`;
-        this._utils.appJson.years[y_index].months[m_index].movements.forEach((movement) => {
-          text += `    ${movement.amount}€ | ${movement.type} | ${movement.date} | ${movement.reason} \n`;
-        });
-      });
+//     console.log(text);
+
+    this._utils.writeToDownload('FundWatcherStorage.json', JSON.stringify(this._utils.appJson)).then(() => {
+
+      this._utils.showAlert(`Attenzione`, "I tuoi dati sono stati esportati sulla cartella dei Download");
+    }).catch(() => { 
+      this._utils.showAlert(`Errore`, "Non è stato possibile esportare i dati");
     });
 
-    console.log(text);
-
-    //this._utils.showAlert(``, text, () => { });
-
-    //this.socialSharing.shareViaWhatsApp(text);
   }
   
   toggleDarkMode() {
     this._utils.toggleDarkMode(!this._utils.darkMode);
+  }
+
+  uploadData() {
+    this._utils.showAlert("Attenzione", "Importando dei dati eliminerai quelli attuali, se non vuoi perdere i dati attuali puoi esportarli!", () => {
+      this._utils.readData();
+    });
   }
 
 }

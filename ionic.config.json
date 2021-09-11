@@ -1,5 +1,5 @@
 {
-  "name": "FundWatcher",
+  "name": "fundwatcher",
   "integrations": {
     "capacitor": {
       "enabled": false

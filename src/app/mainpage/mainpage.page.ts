@@ -102,7 +102,7 @@ export class MainPage implements OnInit {
         handler: (data) => {
 
           if (data.ammonto == '' || data.motivo == '') {
-            this._utils.showAlert("Attenzione", "L'ammonto o la data non sono stati inseriti!", () => { });
+            this._utils.showAlert("Attenzione", "L'ammonto o la data non sono stati inseriti!");
             return;
           }
           this._utils.appJson.years[this._utils.Y_Index]
@@ -285,12 +285,11 @@ export class MainPage implements OnInit {
 
   }
 
-  openSummary() {
+  openSummary(): void {
 
     const selectedMonth = this._utils.appJson.years[this._utils.Y_Index].months[this._utils.M_Index].month; 
 
-    this._utils.showAlert(`Riepilogo di ${selectedMonth}`, this._utils.calculateSummary(), () => {});
+    this._utils.showAlert(`Riepilogo di ${selectedMonth}`, this._utils.calculateSummary());
   }
-
 
 }

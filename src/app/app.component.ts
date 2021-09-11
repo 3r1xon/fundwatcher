@@ -136,8 +136,11 @@ export class AppComponent implements OnInit {
 
     await alert.present();
   }
-
-
+  //
+  // Summary:
+  //    Check if the current year exists in the appJson
+  //    if not, this means a new year has come and the
+  //    function will add it to the years list
   addNewYear() {
     let yearExist: boolean = false;
 

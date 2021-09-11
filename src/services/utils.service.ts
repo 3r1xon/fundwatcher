@@ -11,16 +11,30 @@ import { movements } from 'src/app/interfaces/movements.interface';
 })
 export class UtilsService {
 
-  constructor(public alertController: AlertController, public file: File, public storage: Storage) { }
+  constructor(
+    public alertController: AlertController, 
+    public file: File, 
+    public storage: Storage) { }
 
-
+  // This is the index representing the month
   public M_Index: number;
-
+  // This is the index representing the year
   public Y_Index: number;
-
+  // This is the full dictionary which contains
+  // all the data and that gets loaded by the storage
   public appJson: appJson;
 
   public darkMode: boolean = false;
+
+  public readonly typeColor = {
+    entrata: "success",
+    uscita: "danger"
+  };
+
+  public readonly typeIcon = {
+    entrata: "trending-up-outline",
+    uscita: "trending-down-outline"
+  };
 
   getMonths(): Array<months> {
     
@@ -76,7 +90,7 @@ export class UtilsService {
     }
   }
 
-  async showAlert(title: string, message: string, callback) {
+  async showAlert(title: string, message: string, callback = () => {}) {
     const alert = await this.alertController.create({
       cssClass: "alert",
       header: title,
@@ -86,7 +100,7 @@ export class UtilsService {
 
     await alert.present();
 
-    const { role } = await alert.onDidDismiss()
+    const { role } = await alert.onDidDismiss();
     
     callback();
   }
@@ -112,7 +126,7 @@ export class UtilsService {
       return `In questo mese hai speso ${spended.toFixed(2)}€`;
 
     if (spendable < 0)
-      return `Limite mensile di ${this.appJson.maxOutGo}€ superato!`
+      return `Limite mensile di ${this.appJson.maxOutGo}€ superato!`;
 
 
     return `Puoi spendere ${spendable.toFixed(2)}€`;
@@ -132,10 +146,10 @@ export class UtilsService {
       if (movement.type == "entrata") {
         totalEarn += movement.amount;
       }
-    })
+    });
 
     if (totalOutGo == 0 && totalEarn == 0) {
-      return "Non ci sono entrate e neanche uscite.";
+      return "Non sono presenti movimenti.";
     }
 
     return `TOTALE ENTRATE: ${totalEarn}€ \n TOTALE USCITE: ${totalOutGo}€ \n DIFFERENZA: ${totalEarn-totalOutGo}€`;
@@ -149,6 +163,13 @@ export class UtilsService {
     document.body.setAttribute('color-theme', mode);
     this.darkMode = flag;
     this.storage.set("DARK_MODE", flag);
+  }
+
+  writeToDownload(filename, obj) {
+    return this.file.writeFile(this.file.externalRootDirectory + '/Download/', filename, obj);
+  }
+
+  readData() {
   }
 
  }

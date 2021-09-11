@@ -13,9 +13,10 @@
           </ion-fab>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected" 
+              (click)="selectMonth(i)">
               <ion-icon slot="start" ios="calendar-outline" md="calendar-sharp"></ion-icon>
-              <ion-label (click)="selectMonth(i)" [color]="p.color">{{ p.title }}</ion-label>
+              <ion-label [color]="p.color">{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

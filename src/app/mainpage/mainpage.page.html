@@ -29,10 +29,10 @@
 
     <div *ngFor="let movement of _utils.appJson.years[_utils.Y_Index].months[_utils.M_Index].movements; let i = index">
 
-      <ion-item [color]="movement.type == 'uscita' ? 'danger' : 'success' " ion-no-padding
+      <ion-item [color]="_utils.typeColor[movement.type]" ion-no-padding
        (click)="showItem(i)">
 
-        <ion-icon [name]="movement.type == 'entrata' ? 'trending-up-outline' : 'trending-down-outline' "></ion-icon>
+        <ion-icon [name]="_utils.typeIcon[movement.type]"></ion-icon>
         
         <ion-label style="margin-left: 10px;">
           <b> {{ movement.amount }}€ </b> {{ movement.reason }}
